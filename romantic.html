@@ -106,6 +106,18 @@
         <div class="image-frame">
             <img src="https://img001.prntscr.com/file/img001/BXv-HOhQQD-wzL2tMQujYg.png" alt="For My Love" style="max-width: 100%; border-radius: 10px;">
         </div>
+        <div style="text-align: center; margin-top: 30px;">
+  <button onclick="redirectToSadPage()" 
+          style="padding: 10px 20px;
+                 background-color: #ff6b6b;
+                 color: white;
+                 border: none;
+                 border-radius: 50px;
+                 font-size: 16px;
+                 cursor: pointer;">
+    Not satisfied?
+  </button>
+</div>
         
         <div class="message">
             Thank you for your forgiveness, my love. You mean the world to me, and I promise to cherish you always.
@@ -157,6 +169,9 @@
             }
         `;
         document.head.appendChild(style);
+         function redirectToSadPage() {
+    window.location.href = "sad.html";
+  }
     </script>
 </body>
 </html>
