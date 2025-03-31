@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .dialog-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .message {
+            font-size: 18px;
+            color: #d81b60;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .yes-btn {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+        
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .no-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        h1 {
+            color: #d81b60;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dialog-box">
+        <h1>My Dearest</h1>
+        <div class="message" id="apologyMessage">I'm really sorry sweetheart mi amor, will you forgive me?</div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="redirectToRomanticPage()">Yes</button>
+            <button class="no-btn" onclick="showDialogAgain()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        const messages = [
+            "I'm really sorry sweetheart mi amor, will you forgive me?",
+            "Please forgive me, my love...",
+            "I won't stop until you forgive me...",
+            "I can't imagine my life without you, please...",
+            "You mean everything to me, please give me another chance...",
+            "I'll keep asking forever because you're worth it...",
+            "My heart belongs to you, please say yes..."
+        ];
+
+        function redirectToRomanticPage() {
+            window.location.href = "romantic.html";
+        }
+        
+        function showDialogAgain() {
+            noClickCount++;
+            
+            // Cycle through messages after every 3 clicks
+            const messageIndex = Math.min(Math.floor(noClickCount / 3), messages.length - 1);
+            
+            document.getElementById('apologyMessage').textContent = messages[messageIndex];
+            
+            // Make the "No" button smaller each time to make it harder to click
+            const noButton = document.querySelector('.no-btn');
+            const currentWidth = parseInt(getComputedStyle(noButton).width);
+            if (currentWidth > 70) { // Don't make it smaller than 70px
+                noButton.style.width = (currentWidth - 10) + 'px';
+            }
+            
+            // If they keep clicking "No" many times, make the "Yes" button more appealing
+            if (noClickCount > 5) {
+                const yesButton = document.querySelector('.yes-btn');
+                yesButton.style.transform = 'scale(1.1)';
+                yesButton.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.7)';
+            }
+        }
+    </script>
+</body>
+</html>

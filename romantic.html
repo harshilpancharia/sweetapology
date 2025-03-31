@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, My Love</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            position: relative;
+            text-align: center;
+            padding: 30px;
+            max-width: 800px;
+        }
+        
+        h1 {
+            color: #d81b60;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .image-frame {
+            position: relative;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        
+        .image-frame::before, .image-frame::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        
+        .image-frame::before {
+            background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+            top: -50px;
+            left: -50px;
+            transform: rotate(-30deg);
+        }
+        
+        .image-frame::after {
+            background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+            bottom: -50px;
+            right: -50px;
+            transform: rotate(120deg);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .roses {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .rose {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+        
+        .message {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #d81b60;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="roses" id="roses-container"></div>
+    
+    <div class="container">
+        <h1>For You, My Love</h1>
+        
+        <div class="image-frame">
+            <!-- Insert your romantic image here by replacing the src below -->
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Romantic Image">
+        </div>
+        
+        <div class="message">
+            Thank you for your forgiveness, my love. You mean the world to me, and I promise to cherish you always.
+        </div>
+    </div>
+
+    <script>
+        // Create floating roses around the page
+        const rosesContainer = document.getElementById('roses-container');
+        const roseCount = 15;
+        
+        for (let i = 0; i < roseCount; i++) {
+            const rose = document.createElement('div');
+            rose.classList.add('rose');
+            
+            // Random position
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            // Random size
+            const size = 30 + Math.random() * 50;
+            
+            // Random rotation
+            const rotation = Math.random() * 360;
+            
+            // Random animation
+            const animationDuration = 10 + Math.random() * 20;
+            
+            rose.style.left = `${x}%`;
+            rose.style.top = `${y}%`;
+            rose.style.width = `${size}px`;
+            rose.style.height = `${size}px`;
+            rose.style.transform = `rotate(${rotation}deg)`;
+            rose.style.animation = `float ${animationDuration}s infinite ease-in-out`;
+            
+            rosesContainer.appendChild(rose);
+        }
+        
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0) rotate(${Math.random() * 360}deg);
+                }
+                50% {
+                    transform: translateY(-20px) rotate(${Math.random() * 360}deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
